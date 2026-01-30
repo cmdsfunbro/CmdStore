@@ -34,7 +34,7 @@ body{
 
 .hidden{display:none}
 
-/* FIX */
+/* FIX iOS / GitHub Pages */
 img{
   max-width:100%;
   height:auto;
@@ -60,7 +60,7 @@ img{
   outline:none;
 }
 
-/* CARDS */
+/* LIST */
 .card{
   margin:16px;
   padding:18px;
@@ -81,7 +81,7 @@ img{
 .card-title{font-size:18px}
 .card-sub{font-size:13px;color:var(--sub)}
 
-/* APP PAGE */
+/* APP */
 .app{padding-bottom:120px}
 
 .back{
@@ -123,6 +123,7 @@ img{
   cursor:pointer;
 }
 
+/* SCREENS */
 .app-screens{
   display:flex;
   gap:12px;
@@ -134,6 +135,16 @@ img{
   height:260px;
   border-radius:22px;
   object-fit:cover;
+}
+
+/* AUTHOR */
+.app-author{
+  margin-top:14px;
+  font-size:13px;
+  color:rgba(255,255,255,.5);
+}
+body.light .app-author{
+  color:rgba(0,0,0,.5);
 }
 
 /* SETTINGS */
@@ -258,6 +269,8 @@ nav button.active{
       <img src="https://www.comss.ru/i/img/032022/alfa_02.webp">
       <img src="https://www.comss.ru/i/img/032022/alfa_03.webp">
     </div>
+
+    <div class="app-author">alfa</div>
   </div>
 </div>
 
@@ -275,10 +288,10 @@ nav button.active{
     </div>
 
     <div class="app-screens">
-      <img src="https://static.rustore.ru/imgproxy/pGCkIfaj1QDM9M07Zc-1JzrFtmEJNoKOamxIcLQBJv0/preset:web_scr_prt_162/plain/https://static.rustore.ru/2025/9/30/f1/apk/220863/content/SCREENSHOT/a99db8d2-1771-49b9-9dec-b965184a42a6.png">
-      <img src="https://static.rustore.ru/imgproxy/1tIurY6QRC4MP-hlf__AGivKE07Gq0bkJcRFtdYZM1o/preset:web_scr_prt_162/plain/https://static.rustore.ru/2025/9/30/af/apk/220863/content/SCREENSHOT/2811bcf2-5e0e-4cd6-a7d5-a27cdd351f33.png">
-      <img src="https://static.rustore.ru/imgproxy/WDv1a3r7gvKmqAwL8KIZLepTgMOSM4jL2VXhNXSuyzs/preset:web_scr_prt_162/plain/https://static.rustore.ru/2025/9/30/f8/apk/220863/content/SCREENSHOT/59a2589b-29f0-4bcd-b8f8-e36b6f393c47.png">
+      <img src="https://share.google/images/2PE1iD83iTI29uOmG">
     </div>
+
+    <div class="app-author">tbank</div>
   </div>
 </div>
 
@@ -294,6 +307,8 @@ nav button.active{
       </div>
       <button class="get-btn" onclick="download('https://dnull.xyz/latest_bs_i')">Загрузить</button>
     </div>
+
+    <div class="app-author">nulls</div>
   </div>
 </div>
 
