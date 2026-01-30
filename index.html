@@ -1,353 +1,311 @@
-<p><!DOCTYPE html><br>
-<html lang="ru"><br>
-<head><br>
-<meta charset="UTF-8"><br>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><br>
-<title>RuStore iOS</title></p>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>RuStore iOS</title>
 
-<p><style><br>
-:root{<br>
- --bg:#000;<br>
- --card:rgba(30,30,30,.85);<br>
- --text:#fff;<br>
- --sub:#aaa;<br>
- --blue:#0a84ff;<br>
-}<br>
-body.light{<br>
- --bg:#f2f2f7;<br>
- --card:#fff;<br>
- --text:#000;<br>
- --sub:#666;<br>
-}<br>
-*{<br>
- box-sizing:border-box;<br>
- font-family:-apple-system,BlinkMacSystemFont,Inter,Roboto;<br>
-}<br>
-body{<br>
- margin:0;<br>
- background:var(--bg);<br>
- color:var(--text);<br>
-}<br>
-.hidden{display:none}<br>
-.glass{<br>
- background:var(--card);<br>
- backdrop-filter:blur(30px);<br>
- border-radius:26px;<br>
-}</p>
+<style>
+:root{
+  --bg:#000;
+  --card:rgba(30,30,30,.85);
+  --text:#fff;
+  --sub:#aaa;
+  --blue:#0a84ff;
+}
 
-<p>/* SEARCH */<br>
-.search{<br>
- margin:16px;<br>
- padding:14px 18px;<br>
- border-radius:20px;<br>
- border:none;<br>
- width:calc(100% - 32px);<br>
- background:var(--card);<br>
- color:var(--text);<br>
- font-size:16px;<br>
- outline:none;<br>
-}</p>
+*{
+  box-sizing:border-box;
+  font-family:-apple-system,BlinkMacSystemFont,Inter,Roboto;
+}
 
-<p>/* APP LIST */<br>
-.card{<br>
- margin:16px;<br>
- padding:18px;<br>
- display:flex;<br>
- gap:16px;<br>
- align-items:center;<br>
- cursor:pointer;<br>
-}<br>
-.card:active{transform:scale(.96)}<br>
-.icon{<br>
- width:72px;<br>
- height:72px;<br>
- border-radius:18px;<br>
-}<br>
-.card-title{font-size:18px}<br>
-.card-sub{font-size:13px;color:var(--sub)}</p>
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+}
 
-<p>/* PAGES */<br>
-.page{animation:pageIn .3s ease}<br>
-@keyframes pageIn{<br>
- from{opacity:0;transform:translateX(20px)}<br>
- to{opacity:1}<br>
-}</p>
+.hidden{display:none}
 
-<p>/* APP PAGE */<br>
-.app{padding-bottom:120px}<br>
-.back{<br>
- margin:16px;<br>
- color:var(--blue);<br>
- font-size:17px;<br>
- cursor:pointer;<br>
-}</p>
+/* FIX GitHub Pages */
+img{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
 
-<p>/* APP CARD */<br>
-.app-card{<br>
- margin:16px;<br>
- padding:20px;<br>
- border-radius:32px;<br>
-}<br>
-.app-top{<br>
- display:flex;<br>
- gap:14px;<br>
- align-items:center;<br>
-}<br>
-.app-icon{<br>
- width:72px;<br>
- height:72px;<br>
- border-radius:18px;<br>
-}<br>
-.app-info{flex:1}<br>
-.app-name{font-size:22px;font-weight:600}<br>
-.app-cat{font-size:14px;color:var(--sub)}<br>
-.get-btn{<br>
- padding:8px 18px;<br>
- border-radius:999px;<br>
- border:none;<br>
- background:var(--blue);<br>
- color:#fff;<br>
- font-size:15px;<br>
-}<br>
-.app-meta{<br>
- display:flex;<br>
- gap:16px;<br>
- font-size:13px;<br>
- color:var(--sub);<br>
- margin:14px 0;<br>
-}</p>
+.glass{
+  background:var(--card);
+  backdrop-filter:blur(30px);
+  border-radius:26px;
+}
 
-<p>/* SCREENSHOTS */<br>
-.app-screens{<br>
- display:flex;<br>
- gap:12px;<br>
- overflow-x:auto;<br>
-}<br>
-.app-screens img{<br>
- height:260px;<br>
- border-radius:22px;<br>
-}</p>
+/* HEADER */
+.header{
+  margin:16px;
+  padding:12px 20px;
+  font-size:16px;
+}
 
-<p>/* SETTINGS */<br>
-.settings{<br>
- margin:16px;<br>
- padding:20px;<br>
-}<br>
-.setting-row{<br>
- display:flex;<br>
- justify-content:space-between;<br>
- align-items:center;<br>
-}</p>
+/* SEARCH */
+.search{
+  margin:0 16px 16px;
+  padding:14px 18px;
+  border-radius:20px;
+  border:none;
+  width:calc(100% - 32px);
+  background:var(--card);
+  color:var(--text);
+  font-size:16px;
+  outline:none;
+}
 
-<p>/* SWITCH */<br>
-.ios-switch{<br>
- width:51px;<br>
- height:31px;<br>
- position:relative;<br>
-}<br>
-.ios-switch input{display:none}<br>
-.slider{<br>
- position:absolute;<br>
- inset:0;<br>
- background:#3a3a3c;<br>
- border-radius:31px;<br>
-}<br>
-.slider:before{<br>
- content:"";<br>
- position:absolute;<br>
- width:27px;<br>
- height:27px;<br>
- top:2px;<br>
- left:2px;<br>
- background:#fff;<br>
- border-radius:50%;<br>
- transition:.25s;<br>
-}<br>
-input:checked + .slider{<br>
- background:#34c759;<br>
-}<br>
-input:checked + .slider:before{<br>
- transform:translateX(20px);<br>
-}</p>
+/* APP LIST */
+.card{
+  margin:16px;
+  padding:18px;
+  display:flex;
+  gap:16px;
+  align-items:center;
+  cursor:pointer;
+}
 
-<p>/* NAV */<br>
-nav{<br>
- position:fixed;<br>
- bottom:16px;<br>
- left:16px;<br>
- right:16px;<br>
- height:80px;<br>
- display:flex;<br>
- justify-content:space-around;<br>
- align-items:center;<br>
-}<br>
-nav button{<br>
- background:none;<br>
- border:none;<br>
- color:var(--sub);<br>
- font-size:18px;<br>
- padding:14px 24px;<br>
-}<br>
-nav button.active{<br>
- color:var(--blue);<br>
- font-weight:600;<br>
-}<br>
-</style><br>
-</head></p>
+.icon{
+  width:72px;
+  height:72px;
+  border-radius:18px;
+  object-fit:cover;
+  flex-shrink:0;
+}
 
-<p><body></p>
+.card-title{font-size:18px}
+.card-sub{font-size:13px;color:var(--sub)}
 
-<p><!-- HOME --><br>
-<div id="home" class="page"><br>
- <input class="search" placeholder="Поиск" oninput="searchApps(this.value)"></p>
+/* PAGES */
+.page{animation:pageIn .3s}
+@keyframes pageIn{
+  from{opacity:0;transform:translateX(20px)}
+  to{opacity:1}
+}
 
-<p> <div class="glass card" data-name="альфа банк" onclick="openApp('alfa')"><br>
- <img class="icon" src="https://cdn-gc.type.today/storage/post_image/2/2/2238/preview_image-EXYKTzwLxK5OXIa-bYnGJjO_wYVJ2I-WOg.jpg"><br>
- <div><br>
- <div class="card-title">Альфа Банк</div><br>
- <div class="card-sub">Финансы • 170 МБ</div><br>
- </div><br>
- </div></p>
+/* APP PAGE */
+.app{padding-bottom:100px}
 
-<p> <div class="glass card" data-name="т банк" onclick="openApp('tbank')"><br>
- <img class="icon" src="https://static.rustore.ru/imgproxy/54bhE55aMUdu39kNzjr4Epv05v-PUkRlyp_vOwVd8HE/preset:vk_og_img/plain/https://static.rustore.ru/apk/220863/content/ICON/2238e3ca-e3e7-41d0-b037-777ddc637a5b.png@webp"><br>
- <div><br>
- <div class="card-title">Т-Банк</div><br>
- <div class="card-sub">Финансы • 190 МБ</div><br>
- </div><br>
- </div></p>
+.back{
+  margin:16px;
+  color:var(--blue);
+  font-size:17px;
+  cursor:pointer;
+}
 
-<p> <div class="glass card" data-name="nulls brawl" onclick="openApp('nulls')"><br>
- <img class="icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQquIhx-uM1XXDOqN20C39IQZQ5wpQ0igHuewLkJYH9JQ&s=10"><br>
- <div><br>
- <div class="card-title">Null’s Brawl</div><br>
- <div class="card-sub">Игры • 600 МБ</div><br>
- </div><br>
- </div><br>
-</div></p>
+.app-card{
+  margin:16px;
+  padding:20px;
+  border-radius:32px;
+}
 
-<p><!-- ALFA --><br>
-<div id="alfa" class="hidden app page"><br>
- <div class="back" onclick="goHome()">‹ Назад</div><br>
- <div class="glass app-card"><br>
- <div class="app-top"><br>
- <img class="app-icon" src="https://cdn-gc.type.today/storage/post_image/2/2/2238/preview_image-EXYKTzwLxK5OXIa-bYnGJjO_wYVJ2I-WOg.jpg"><br>
- <div class="app-info"><br>
- <div class="app-name">Альфа Банк</div><br>
- <div class="app-cat">Финансы</div><br>
- </div><br>
- <button class="get-btn" onclick="download('https://t.me/rustoreFiles/4')">Загрузить</button><br>
- </div><br>
- <div class="app-meta"><br>
- <span>7+</span><span>Финансы</span><span>170 МБ</span><br>
- </div><br>
- <div class="app-screens"><br>
- <img src="https://www.comss.ru/i/img/032022/alfa_01.webp"><br>
- <img src="https://www.comss.ru/i/img/032022/alfa_02.webp"><br>
- <img src="https://www.comss.ru/i/img/032022/alfa_03.webp"><br>
- </div><br>
- </div><br>
-</div></p>
+.app-top{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
 
-<p><!-- TBANK --><br>
-<div id="tbank" class="hidden app page"><br>
- <div class="back" onclick="goHome()">‹ Назад</div><br>
- <div class="glass app-card"><br>
- <div class="app-top"><br>
- <img class="app-icon" src="https://static.rustore.ru/imgproxy/54bhE55aMUdu39kNzjr4Epv05v-PUkRlyp_vOwVd8HE/preset:vk_og_img/plain/https://static.rustore.ru/apk/220863/content/ICON/2238e3ca-e3e7-41d0-b037-777ddc637a5b.png@webp"><br>
- <div class="app-info"><br>
- <div class="app-name">Т-Банк</div><br>
- <div class="app-cat">Финансы</div><br>
- </div><br>
- <button class="get-btn" onclick="download('https://t.me/rustoreFiles/5')">Загрузить</button><br>
- </div><br>
- <div class="app-meta"><br>
- <span>7+</span><span>Финансы</span><span>190 МБ</span><br>
- </div><br>
- <div class="app-screens"><br>
- <img src="https://static.rustore.ru/imgproxy/pGCkIfaj1QDM9M07Zc-1JzrFtmEJNoKOamxIcLQBJv0/preset:web_scr_prt_162/plain/https://static.rustore.ru/2025/9/30/f1/apk/220863/content/SCREENSHOT/a99db8d2-1771-49b9-9dec-b965184a42a6.png@webp"><br>
- <img src="https://static.rustore.ru/imgproxy/1tIurY6QRC4MP-hlf__AGivKE07Gq0bkJcRFtdYZM1o/preset:web_scr_prt_162/plain/https://static.rustore.ru/2025/9/30/af/apk/220863/content/SCREENSHOT/2811bcf2-5e0e-4cd6-a7d5-a27cdd351f33.png@webp"><br>
- <img src="https://static.rustore.ru/imgproxy/WDv1a3r7gvKmqAwL8KIZLepTgMOSM4jL2VXhNXSuyzs/preset:web_scr_prt_162/plain/https://static.rustore.ru/2025/9/30/f8/apk/220863/content/SCREENSHOT/59a2589b-29f0-4bcd-b8f8-e36b6f393c47.png@webp"><br>
- </div><br>
- </div><br>
-</div></p>
+.app-icon{
+  width:72px;
+  height:72px;
+  border-radius:18px;
+  object-fit:cover;
+}
 
-<p><!-- NULLS --><br>
-<div id="nulls" class="hidden app page"><br>
- <div class="back" onclick="goHome()">‹ Назад</div><br>
- <div class="glass app-card"><br>
- <div class="app-top"><br>
- <img class="app-icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQquIhx-uM1XXDOqN20C39IQZQ5wpQ0igHuewLkJYH9JQ&s=10"><br>
- <div class="app-info"><br>
- <div class="app-name">Null’s Brawl</div><br>
- <div class="app-cat">Игры</div><br>
- </div><br>
- <button class="get-btn" onclick="download('https://dnull.xyz/latest_bs_i')">Загрузить</button><br>
- </div><br>
- <div class="app-meta"><br>
- <span>7+</span><span>Игры</span><span>600 МБ</span><br>
- </div><br>
- </div><br>
-</div></p>
+.app-name{font-size:22px;font-weight:600}
+.app-cat{font-size:14px;color:var(--sub)}
 
-<p><!-- SETTINGS --><br>
-<div id="settings" class="hidden page"><br>
- <div class="back" onclick="goHome()">‹ Назад</div><br>
- <div class="glass settings"><br>
- <div class="setting-row"><br>
- <span>Светлая тема</span><br>
- <label class="ios-switch"><br>
- <input type="checkbox" onchange="toggleTheme(this.checked)"><br>
- <span class="slider"></span><br>
- </label><br>
- </div><br>
- </div><br>
-</div></p>
+.get-btn{
+  padding:8px 18px;
+  border-radius:999px;
+  border:none;
+  background:var(--blue);
+  color:#fff;
+  font-size:15px;
+  cursor:pointer;
+}
 
-<p><nav id="bottomNav" class="glass"><br>
- <button class="active" onclick="tab('home',this)">Главная</button><br>
- <button onclick="tab('settings',this)">Настройки</button><br>
-</nav></p>
+.app-meta{
+  display:flex;
+  gap:16px;
+  font-size:13px;
+  color:var(--sub);
+  margin:14px 0;
+}
 
-<p><script><br>
-const home=document.getElementById('home');<br>
-const settings=document.getElementById('settings');<br>
-const nav=document.getElementById('bottomNav');</p>
+/* SCREENS */
+.app-screens{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+}
 
-<p>function hideAll(){<br>
- home.classList.add('hidden');<br>
- settings.classList.add('hidden');<br>
- document.querySelectorAll('.app').forEach(a=>a.classList.add('hidden'));<br>
-}<br>
-function openApp(id){<br>
- hideAll();<br>
- nav.classList.add('hidden');<br>
- document.getElementById(id).classList.remove('hidden');<br>
-}<br>
-function goHome(){<br>
- hideAll();<br>
- home.classList.remove('hidden');<br>
- nav.classList.remove('hidden');<br>
-}<br>
-function tab(id,btn){<br>
- hideAll();<br>
- document.getElementById(id).classList.remove('hidden');<br>
- document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));<br>
- btn.classList.add('active');<br>
-}<br>
-function toggleTheme(v){<br>
- document.body.classList.toggle('light',v);<br>
-}<br>
-function searchApps(q){<br>
- q=q.toLowerCase();<br>
- document.querySelectorAll('#home .card').forEach(c=>{<br>
- c.style.display=c.dataset.name.includes(q)?'flex':'none';<br>
- });<br>
-}<br>
-function download(url){<br>
- window.open(url,'_blank');<br>
-}<br>
-</script></p>
+.app-screens img{
+  height:260px;
+  width:auto;
+  border-radius:22px;
+  object-fit:cover;
+}
 
-<p></body><br>
-</html></p>
+/* NAV */
+nav{
+  position:fixed;
+  bottom:12px;
+  left:12px;
+  right:12px;
+  height:72px;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  font-size:18px;
+}
+
+nav button{
+  flex:1;
+  height:52px;
+  margin:0 6px;
+  border:none;
+  border-radius:18px;
+  background:none;
+  color:var(--sub);
+}
+
+nav button.active{
+  background:rgba(255,255,255,.08);
+  color:var(--blue);
+}
+</style>
+</head>
+
+<body>
+
+<!-- HOME -->
+<div id="home" class="page">
+  <div class="glass header">Приложения</div>
+  <input class="search" placeholder="Поиск" oninput="searchApps(this.value)">
+
+  <div class="glass card" data-name="альфа банк" onclick="openApp('alfa')">
+    <img class="icon" src="https://cdn-gc.type.today/storage/post_image/2/2/2238/preview_image-EXYKTzwLxK5OXIa-bYnGJjO_wYVJ2I-WOg.jpg">
+    <div>
+      <div class="card-title">Альфа Банк</div>
+      <div class="card-sub">Финансы • 170 МБ</div>
+    </div>
+  </div>
+
+  <div class="glass card" data-name="т банк" onclick="openApp('tbank')">
+    <img class="icon" src="https://static.rustore.ru/apk/220863/content/ICON/2238e3ca-e3e7-41d0-b037-777ddc637a5b.png">
+    <div>
+      <div class="card-title">Т-Банк</div>
+      <div class="card-sub">Финансы • 190 МБ</div>
+    </div>
+  </div>
+
+  <div class="glass card" data-name="nulls brawl" onclick="openApp('nulls')">
+    <img class="icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQquIhx-uM1XXDOqN20C39IQZQ5wpQ0igHuewLkJYH9JQ&s=10">
+    <div>
+      <div class="card-title">Nulls Brawl</div>
+      <div class="card-sub">Игры • 600 МБ</div>
+    </div>
+  </div>
+</div>
+
+<!-- ALFA -->
+<div id="alfa" class="hidden app page">
+  <div class="back" onclick="goHome()">‹ Назад</div>
+  <div class="glass app-card">
+    <div class="app-top">
+      <img class="app-icon" src="https://cdn-gc.type.today/storage/post_image/2/2/2238/preview_image-EXYKTzwLxK5OXIa-bYnGJjO_wYVJ2I-WOg.jpg">
+      <div>
+        <div class="app-name">Альфа Банк</div>
+        <div class="app-cat">Финансы • 7+</div>
+      </div>
+      <button class="get-btn" onclick="download('https://t.me/rustoreFiles/4')">Загрузить</button>
+    </div>
+
+    <div class="app-screens">
+      <img src="https://www.comss.ru/i/img/032022/alfa_01.webp">
+      <img src="https://www.comss.ru/i/img/032022/alfa_02.webp">
+      <img src="https://www.comss.ru/i/img/032022/alfa_03.webp">
+    </div>
+  </div>
+</div>
+
+<!-- TBANK -->
+<div id="tbank" class="hidden app page">
+  <div class="back" onclick="goHome()">‹ Назад</div>
+  <div class="glass app-card">
+    <div class="app-top">
+      <img class="app-icon" src="https://static.rustore.ru/apk/220863/content/ICON/2238e3ca-e3e7-41d0-b037-777ddc637a5b.png">
+      <div>
+        <div class="app-name">Т-Банк</div>
+        <div class="app-cat">Финансы • 7+</div>
+      </div>
+      <button class="get-btn" onclick="download('https://t.me/rustoreFiles/5')">Загрузить</button>
+    </div>
+
+    <div class="app-screens">
+      <img src="https://static.rustore.ru/2025/9/30/f1/apk/220863/content/SCREENSHOT/a99db8d2.png">
+      <img src="https://static.rustore.ru/2025/9/30/af/apk/220863/content/SCREENSHOT/2811bcf2.png">
+      <img src="https://static.rustore.ru/2025/9/30/f8/apk/220863/content/SCREENSHOT/59a2589b.png">
+    </div>
+  </div>
+</div>
+
+<!-- NULLS -->
+<div id="nulls" class="hidden app page">
+  <div class="back" onclick="goHome()">‹ Назад</div>
+  <div class="glass app-card">
+    <div class="app-top">
+      <img class="app-icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQquIhx-uM1XXDOqN20C39IQZQ5wpQ0igHuewLkJYH9JQ&s=10">
+      <div>
+        <div class="app-name">Nulls Brawl</div>
+        <div class="app-cat">Игры • 7+</div>
+      </div>
+      <button class="get-btn" onclick="download('https://dnull.xyz/latest_bs_i')">Загрузить</button>
+    </div>
+  </div>
+</div>
+
+<nav class="glass">
+  <button class="active" onclick="tab('home',this)">Главная</button>
+</nav>
+
+<script>
+function hideAll(){
+  document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));
+}
+
+function openApp(id){
+  hideAll();
+  document.getElementById(id).classList.remove('hidden');
+}
+
+function goHome(){
+  hideAll();
+  home.classList.remove('hidden');
+}
+
+function tab(id,btn){
+  hideAll();
+  document.getElementById(id).classList.remove('hidden');
+}
+
+function searchApps(q){
+  q=q.toLowerCase();
+  document.querySelectorAll('#home .card').forEach(c=>{
+    c.style.display=c.dataset.name.includes(q)?'flex':'none';
+  });
+}
+
+function download(url){
+  window.open(url,'_blank');
+}
+</script>
+
+</body>
+</html>
