@@ -14,6 +14,13 @@
   --blue:#0a84ff;
 }
 
+body.light{
+  --bg:#f2f2f7;
+  --card:#fff;
+  --text:#000;
+  --sub:#666;
+}
+
 *{
   box-sizing:border-box;
   font-family:-apple-system,BlinkMacSystemFont,Inter,Roboto;
@@ -27,7 +34,7 @@ body{
 
 .hidden{display:none}
 
-/* FIX GitHub Pages */
+/* FIX */
 img{
   max-width:100%;
   height:auto;
@@ -40,16 +47,9 @@ img{
   border-radius:26px;
 }
 
-/* HEADER */
-.header{
-  margin:16px;
-  padding:12px 20px;
-  font-size:16px;
-}
-
 /* SEARCH */
 .search{
-  margin:0 16px 16px;
+  margin:16px;
   padding:14px 18px;
   border-radius:20px;
   border:none;
@@ -60,7 +60,7 @@ img{
   outline:none;
 }
 
-/* APP LIST */
+/* CARDS */
 .card{
   margin:16px;
   padding:18px;
@@ -81,15 +81,8 @@ img{
 .card-title{font-size:18px}
 .card-sub{font-size:13px;color:var(--sub)}
 
-/* PAGES */
-.page{animation:pageIn .3s}
-@keyframes pageIn{
-  from{opacity:0;transform:translateX(20px)}
-  to{opacity:1}
-}
-
 /* APP PAGE */
-.app{padding-bottom:100px}
+.app{padding-bottom:120px}
 
 .back{
   margin:16px;
@@ -130,26 +123,60 @@ img{
   cursor:pointer;
 }
 
-.app-meta{
-  display:flex;
-  gap:16px;
-  font-size:13px;
-  color:var(--sub);
-  margin:14px 0;
-}
-
-/* SCREENS */
 .app-screens{
   display:flex;
   gap:12px;
   overflow-x:auto;
+  margin-top:16px;
 }
 
 .app-screens img{
   height:260px;
-  width:auto;
   border-radius:22px;
   object-fit:cover;
+}
+
+/* SETTINGS */
+.settings{
+  margin:16px;
+  padding:20px;
+}
+
+.setting-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* SWITCH */
+.ios-switch{
+  position:relative;
+  width:51px;
+  height:31px;
+}
+.ios-switch input{display:none}
+.slider{
+  position:absolute;
+  inset:0;
+  background:#3a3a3c;
+  border-radius:31px;
+}
+.slider:before{
+  content:"";
+  position:absolute;
+  height:27px;
+  width:27px;
+  left:2px;
+  top:2px;
+  background:#fff;
+  border-radius:50%;
+  transition:.25s;
+}
+input:checked + .slider{
+  background:#34c759;
+}
+input:checked + .slider:before{
+  transform:translateX(20px);
 }
 
 /* NAV */
@@ -162,7 +189,6 @@ nav{
   display:flex;
   justify-content:space-around;
   align-items:center;
-  font-size:18px;
 }
 
 nav button{
@@ -173,6 +199,7 @@ nav button{
   border-radius:18px;
   background:none;
   color:var(--sub);
+  font-size:17px;
 }
 
 nav button.active{
@@ -185,8 +212,7 @@ nav button.active{
 <body>
 
 <!-- HOME -->
-<div id="home" class="page">
-  <div class="glass header">Приложения</div>
+<div id="home">
   <input class="search" placeholder="Поиск" oninput="searchApps(this.value)">
 
   <div class="glass card" data-name="альфа банк" onclick="openApp('alfa')">
@@ -215,7 +241,7 @@ nav button.active{
 </div>
 
 <!-- ALFA -->
-<div id="alfa" class="hidden app page">
+<div id="alfa" class="hidden app">
   <div class="back" onclick="goHome()">‹ Назад</div>
   <div class="glass app-card">
     <div class="app-top">
@@ -236,7 +262,7 @@ nav button.active{
 </div>
 
 <!-- TBANK -->
-<div id="tbank" class="hidden app page">
+<div id="tbank" class="hidden app">
   <div class="back" onclick="goHome()">‹ Назад</div>
   <div class="glass app-card">
     <div class="app-top">
@@ -249,15 +275,15 @@ nav button.active{
     </div>
 
     <div class="app-screens">
-      <img src="https://static.rustore.ru/2025/9/30/f1/apk/220863/content/SCREENSHOT/a99db8d2.png">
-      <img src="https://static.rustore.ru/2025/9/30/af/apk/220863/content/SCREENSHOT/2811bcf2.png">
-      <img src="https://static.rustore.ru/2025/9/30/f8/apk/220863/content/SCREENSHOT/59a2589b.png">
+      <img src="https://static.rustore.ru/imgproxy/pGCkIfaj1QDM9M07Zc-1JzrFtmEJNoKOamxIcLQBJv0/preset:web_scr_prt_162/plain/https://static.rustore.ru/2025/9/30/f1/apk/220863/content/SCREENSHOT/a99db8d2-1771-49b9-9dec-b965184a42a6.png">
+      <img src="https://static.rustore.ru/imgproxy/1tIurY6QRC4MP-hlf__AGivKE07Gq0bkJcRFtdYZM1o/preset:web_scr_prt_162/plain/https://static.rustore.ru/2025/9/30/af/apk/220863/content/SCREENSHOT/2811bcf2-5e0e-4cd6-a7d5-a27cdd351f33.png">
+      <img src="https://static.rustore.ru/imgproxy/WDv1a3r7gvKmqAwL8KIZLepTgMOSM4jL2VXhNXSuyzs/preset:web_scr_prt_162/plain/https://static.rustore.ru/2025/9/30/f8/apk/220863/content/SCREENSHOT/59a2589b-29f0-4bcd-b8f8-e36b6f393c47.png">
     </div>
   </div>
 </div>
 
 <!-- NULLS -->
-<div id="nulls" class="hidden app page">
+<div id="nulls" class="hidden app">
   <div class="back" onclick="goHome()">‹ Назад</div>
   <div class="glass app-card">
     <div class="app-top">
@@ -271,13 +297,30 @@ nav button.active{
   </div>
 </div>
 
+<!-- SETTINGS -->
+<div id="settings" class="hidden">
+  <div class="back" onclick="goHome()">‹ Назад</div>
+  <div class="glass settings">
+    <div class="setting-row">
+      <span>Светлая тема</span>
+      <label class="ios-switch">
+        <input type="checkbox" onchange="document.body.classList.toggle('light',this.checked)">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+</div>
+
 <nav class="glass">
   <button class="active" onclick="tab('home',this)">Главная</button>
+  <button onclick="tab('settings',this)">Настройки</button>
 </nav>
 
 <script>
+const home=document.getElementById('home');
+
 function hideAll(){
-  document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));
+  document.querySelectorAll('#home,.app,#settings').forEach(e=>e.classList.add('hidden'));
 }
 
 function openApp(id){
@@ -293,11 +336,13 @@ function goHome(){
 function tab(id,btn){
   hideAll();
   document.getElementById(id).classList.remove('hidden');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
 }
 
 function searchApps(q){
   q=q.toLowerCase();
-  document.querySelectorAll('#home .card').forEach(c=>{
+  document.querySelectorAll('.card').forEach(c=>{
     c.style.display=c.dataset.name.includes(q)?'flex':'none';
   });
 }
